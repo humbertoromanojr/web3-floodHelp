@@ -1,4 +1,12 @@
+"use client";
+
+import { doLogin } from "@/services/Web3Service";
+
 export default function Header() {
+  function handleLogin() {
+    doLogin("hi");
+  }
+
   return (
     <header className="p-3 text-bg-dark">
       <div className="container">
@@ -17,8 +25,9 @@ export default function Header() {
                 alt="logo metamask"
                 width="24"
                 className="me-3"
+                onClick={handleLogin}
               />
-              Log In
+              Login
             </button>
             <a href="/create" className="btn btn-warning">
               Help me, please
