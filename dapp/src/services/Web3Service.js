@@ -1,6 +1,4 @@
 import Web3 from "web3";
-import * as dotenv from "dotenv";
-dotenv.config();
 
 import ABI from "./ABI.json";
 
@@ -18,17 +16,31 @@ export async function doLogin() {
   return accounts[0];
 }
 
-export async function getOpenRequests(lastId = 0) {
+function getContract() {
   if (!window.ethereum) throw new Error("Metamask not installed");
 
   const from = localStorage.getItem("addressWallet");
   const web3 = new Web3(window.ethereum);
 
   const contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS, { from });
+  return contract;
+}
 
+export async function getOpenRequests(lastId = 0) {
+  const contract = getContract();
   const requests = await contract.methods
     .getOpenRequests(lastId + 1, 10)
     .call();
+
+  // filter differ title empty
+  return requests.filter((rq) => rq.title !== "");
+}
+
+export async function openRequest({ title, description, contact, goal }) {
+  const contract = getContract();
+  const requests = await contract.methods
+    .openRequest(title, description, contact, Web3.utils.toWei(goal, "ether"))
+    .send();
 
   // filter differ title empty
   return requests.filter((rq) => rq.title !== "");
