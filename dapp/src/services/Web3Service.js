@@ -38,10 +38,19 @@ export async function getOpenRequests(lastId = 0) {
 
 export async function openRequest({ title, description, contact, goal }) {
   const contract = getContract();
-  const requests = await contract.methods
+  return await contract.methods
     .openRequest(title, description, contact, Web3.utils.toWei(goal, "ether"))
     .send();
+}
 
-  // filter differ title empty
-  return requests.filter((rq) => rq.title !== "");
+export async function closeRequest(id) {
+  const contract = getContract();
+  return await contract.methods.closeRequest(id).send();
+}
+
+export async function donate(id, donationInBnb) {
+  const contract = getContract();
+  return await contract.methods.donate(id).send({
+    value: Web3.utils.toWei(donationInBnb, "ether"),
+  });
 }
