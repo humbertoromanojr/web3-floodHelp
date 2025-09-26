@@ -50,7 +50,7 @@ Install node_modules <br />
 
 Run application <br />
 <img src="https://drive.google.com/uc?export=view&id=16QqYlur8qtl5ao_XyEb4IthGyveQmELo" alt="" width="22" border="0" /> `npm run dev` and `http://localhost:3000`
-<br /><br />
+<br />
 
 <img src="https://drive.google.com/uc?export=view&id=16QqYlur8qtl5ao_XyEb4IthGyveQmELo" alt="" width="22" border="0" /> Gitignore <br />
 To generate the file content directly in the project via the terminal, use:
