@@ -1,6 +1,38 @@
 import Web3 from "web3";
 import { generateAvatarURL } from "@cfx-kit/wallet-avatar";
 export default function Request({ data }) {
+  function handleClose() {
+    if (!confirm("Are you sure you want to close this request?")) return;
+
+    closeRequest(data.id)
+      .then((result) => {
+        alert("Request successfully closed!");
+        window.location.reload = "/";
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert(err.message);
+      });
+  }
+
+  function handleHelp() {
+    const donationInBnb = prompt(
+      "Please enter the amount of BNB you want to donate:"
+    );
+
+    donate(data.id, donationInBnb)
+      .then((result) => {
+        alert("Donation successfully sent!");
+        window.location.reload = "/";
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert(err.message);
+      });
+  }
+
   return (
     <>
       <div className="list-group-item list-group-item-action d-flex gap-3 py-3">
@@ -24,11 +56,19 @@ export default function Request({ data }) {
                 <div className="text-end">
                   {localStorage.getItem("addressWallet") ===
                   data.author.toLowerCase() ? (
-                    <button type="button" className="btn btn-danger btn-sm">
+                    <button
+                      type="button"
+                      className="btn btn-danger btn-sm"
+                      onClick={handleClose}
+                    >
                       Close
                     </button>
                   ) : (
-                    <button type="button" className="btn btn-success btn-sm">
+                    <button
+                      type="button"
+                      className="btn btn-success btn-sm"
+                      onClick={handleHelp}
+                    >
                       &#36; Help-me
                     </button>
                   )}
