@@ -1,11 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { doLogin } from "@/services/Web3Service";
 
 export default function Header() {
+  const [wallet, setWallet] = useState("");
   function handleLogin() {
-    doLogin("hi");
+    doLogin()
+      .then((wallet) => setWallet(wallet))
+      .catch((err) => {
+        console.error(err);
+        alert(err.message);
+      });
   }
+
+  useEffect(() => {
+    setWallet(localStorage.getItem("addressWallet") || "");
+  }, []);
 
   return (
     <header className="p-3 text-bg-dark">
@@ -19,19 +31,22 @@ export default function Header() {
             <h1 className="fw-bold text-light">FloodHelp</h1>
           </a>
           <div className="col-9 text-end">
-            <button type="button" className="btn btn-outline-light me-2">
-              <img
-                src="/logo-metamask.png"
-                alt="logo metamask"
-                width="24"
-                className="me-3"
-                onClick={handleLogin}
-              />
-              Login
-            </button>
-            <a href="/create" className="btn btn-warning">
-              Help me, please
-            </a>
+            {wallet ? (
+              <a href="/create" className="btn btn-warning">
+                Help me, please
+              </a>
+            ) : (
+              <button type="button" className="btn btn-outline-light me-2">
+                <img
+                  src="/logo-metamask.png"
+                  alt="logo metamask"
+                  width="24"
+                  className="me-3"
+                  onClick={handleLogin}
+                />
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>
