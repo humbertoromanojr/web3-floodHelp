@@ -29,6 +29,10 @@
 
 - [Web3](https://github.com/web3/web3.js)
 
+- [Kit Wallet Avatar](https://github.com/fluent-wallet/avatar)
+
+- [Dotenv](https://github.com/motdotla/dotenv)
+
 <br />
 
 ## Install Frontend
