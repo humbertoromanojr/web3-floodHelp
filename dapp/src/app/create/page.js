@@ -59,9 +59,9 @@ export default function Create() {
     >
       <Header />
       <div className="container">
-        <div className="ps-5">
+        <div className="p-5">
           <div className="row my-3">
-            <p className="lead text-light">
+            <p className="lead text-dark bg-light opacity-75 text-center fw-bold mb-3">
               Please fill in all the fields below to tell us what you need.
             </p>
             <div className="col-11">
