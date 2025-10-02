@@ -31,8 +31,6 @@ export async function getOpenRequests(lastId = 0) {
   const requests = await contract.methods
     .getOpenRequests(lastId + 1, 10)
     .call();
-
-  // filter differ title empty
   return requests.filter((rq) => rq.title !== "");
 }
 
