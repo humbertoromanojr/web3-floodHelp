@@ -1,4 +1,6 @@
 import Web3 from "web3";
+import { formatDistance } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import { generateAvatarURL } from "@cfx-kit/wallet-avatar";
 export default function Request({ data }) {
   function handleClose() {
@@ -90,6 +92,19 @@ export default function Request({ data }) {
                       )}`
                     : `BNB ${Web3.utils.fromWei(data.goal, "ether")}`}
                 </span>
+              </div>
+              <div className="col text-end">
+                <small className="opacity-50 text-nowrap">
+                  Created:{" "}
+                  {formatDistance(
+                    new Date(Number(data.timestamp) * 1000),
+                    new Date(),
+                    {
+                      addSuffix: true,
+                      locale: ptBR,
+                    }
+                  )}
+                </small>
               </div>
             </div>
           </div>

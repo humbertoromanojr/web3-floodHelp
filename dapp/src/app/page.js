@@ -14,6 +14,10 @@ export default function Home() {
   const [lastId, setLastId] = useState(0);
   const [requests, setRequests] = useState([]);
 
+  useEffect(() => {
+    loadRequests(lastId);
+  }, [lastId]);
+
   async function loadRequests() {
     try {
       const result = await getOpenRequests(lastId);
@@ -30,9 +34,9 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    loadRequests(0);
-  }, []);
+  function loadMoreRequests() {
+    setLastId(Number(requests[requests.length - 1].id));
+  }
 
   return (
     <>
@@ -56,6 +60,17 @@ export default function Home() {
               </div>
             )}
           </div>
+          {requests && requests.length && requests.length % 10 === 0 ? (
+            <div className="mt-3 text-center">
+              <button
+                type="button"
+                onClick={loadMoreRequests}
+                className="btn btn-outline-dark"
+              >
+                More...
+              </button>
+            </div>
+          ) : null}
         </div>
         <Footer />
       </div>
