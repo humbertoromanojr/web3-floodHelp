@@ -33,6 +33,8 @@
 
 - [Dotenv](https://github.com/motdotla/dotenv)
 
+- [Date-fns](https://date-fns.org)
+
 <br />
 
 ## Install Frontend
