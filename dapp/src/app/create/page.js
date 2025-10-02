@@ -13,6 +13,21 @@ export default function Create() {
     amount: 0,
   });
 
+  const backgroundImageStyle = {
+    backgroundImage: "url(/enchente-rs.jpg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+    width: "100vw",
+    color: "white",
+    margin: 0,
+    padding: 0,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+
   function onInputChange(e) {
     setRequest((prevState) => ({
       ...prevState,
@@ -38,7 +53,10 @@ export default function Create() {
   }
 
   return (
-    <>
+    <div
+      style={backgroundImageStyle}
+      className="container d-block background-color='#0f1221' align-items-center justify-content-center mx-lg-auto"
+    >
       <Header />
       <div className="container">
         <div className="ps-5">
@@ -46,7 +64,7 @@ export default function Create() {
             <p className="lead text-light">
               Please fill in all the fields below to tell us what you need.
             </p>
-            <div className="col-6">
+            <div className="col-11">
               <div className="form-floating mb-3">
                 <input
                   type="text"
@@ -103,7 +121,7 @@ export default function Create() {
           </div>
           <div className="row my-3">
             <div className="col-2">
-              <a href="/" className="btn btn-outline-warning p-3 col-12">
+              <a href="/" className="btn btn-primary p-3 col-12">
                 Back
               </a>
             </div>
@@ -120,6 +138,6 @@ export default function Create() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

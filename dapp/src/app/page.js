@@ -14,6 +14,21 @@ export default function Home() {
   const [lastId, setLastId] = useState(0);
   const [requests, setRequests] = useState([]);
 
+  const backgroundImageStyle = {
+    backgroundImage: "url(/enchente-rs.jpg)",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+    width: "100vw",
+    color: "white",
+    margin: 0,
+    padding: 0,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+  };
+
   useEffect(() => {
     loadRequests(lastId);
   }, [lastId]);
@@ -39,11 +54,14 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div
+      style={backgroundImageStyle}
+      className="container d-block background-color='#0f1221' align-items-center justify-content-center mx-lg-auto"
+    >
       <Header />
       <div className="container">
-        <div className="row ps-5 my-3">
-          <p className="lead text-light">
+        <div className="row p-5 my-3 bg-light opacity-75">
+          <p className="lead text-dark text-center fw-bold">
             Help victims of floods and other natural disasters.
           </p>
         </div>
@@ -74,6 +92,6 @@ export default function Home() {
         </div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
